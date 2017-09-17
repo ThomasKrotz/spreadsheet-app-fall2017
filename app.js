@@ -101,7 +101,23 @@ let mouseButtonPressed = (event, index) => {
  * @todo THEN USING THESE FUNCTIONS, REPLACE THE 0 IN EACH FUNCTION DEFINITION BELOW WITH THE APPROPRIATE OUTPUT
  * @todo BE SURE TO DOCUMENT EACH FUNCTION IN JSDOC FORMAT (USE BELOW AS REFERENCE AND SEE: http://usejsdoc.org/)
  */
+let convertLarge = (x,y) => x/y 
+let msToTotalSeconds = x => convertLarge(x, 1000)
+let msToTotalMinutes = x => convertLarge(msToTotalSeconds(x), 60)
+let msToTotalHours = x => convertLarge(msToTotalMinutes(x), 60)
+let remainingAfterConvert = (x,y) => x%y
+let getSecondFromMs = x => remainingAfterConvert(msToTotalSeconds(x), 60)
+let getMinutesFromMs = x => remainingAfterConvert(msToTotalMinutes(x), 60)
+let getHoursFromMs = x => remainingAfterConvert(msToTotalHours(x), 24)
 
+let convertToSmaller = (x,y) => x*y 
+let daysToTotalHours = x => convertToSmaller(x, 24)
+let toTotalMinutes = x => convertToSmaller(daysToTotalHours(x), 60)
+let toTotalSeconds = x => convertToSmaller(toTotalMinutes(x), 60)
+let remainingAfterConvert = (x,y) => Math.trunc(x/y)
+let getHourFromDays = x => remainingAfterConvert(x, 24)
+let getMinutesFromDays = x => remainingAfterConvert(getHourFromDays(x), 60)
+let getSecondsFromDays = x => remainingAfterConvert(getMinutesFromDays(x), 60)
 /**
  * Given a number of milliseconds from midnight, returns the second (0 to 60) for the displayed time
  * @param {number} num the number of milliseconds to convert to seconds
